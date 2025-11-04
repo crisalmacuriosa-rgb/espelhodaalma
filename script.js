@@ -1,77 +1,178 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const questions = [
-    // Salvador / Pacificador / Controlador / Dependência
-    "Sinto que é minha responsabilidade manter todos bem ao meu redor.",
-    "Tenho dificuldade em dizer 'não', mesmo quando quero.",
-    "Prefiro me calar a entrar em conflito.",
-    "Sinto culpa ao priorizar minhas próprias necessidades.",
-    "Tenho medo de ser rejeitado se mostrar minha vulnerabilidade.",
-    "Costumo assumir responsabilidades que não são minhas.",
-    "Tenho medo de que, se eu não ajudar, algo dê errado.",
-    "Sinto-me perdido quando não estou cuidando de alguém.",
-    "Preciso provar constantemente que sou útil.",
-    "Evito decisões para não desagradar.",
-    "Sinto que, se eu me destacar, posso ser criticado ou atacado.",
-    "Acredito que, se eu amar o suficiente, serei amado de volta.",
-    "Tenho medo de ficar só e acabar sendo esquecido.",
-    "Sinto que dependo emocionalmente de alguém para me sentir inteiro.",
-    "Tenho dificuldade em me sentir digno de amor sem estar servindo alguém.",
-    // Ferida da Bruxa / Amor Condicional
-    "Sinto que minha força incomoda os outros.",
-    "Já me diminuí para não gerar inveja ou confronto.",
-    "Acredito que, se eu mostrar quem sou, posso ser punido.",
-    "Sinto que minha independência pode afastar quem amo.",
-    "Tenho medo de ser visto como egoísta quando me coloco em primeiro lugar."
-  ];
+// 🌙 Espelho da Alma - script.js
+// Música de fundo
+window.addEventListener("DOMContentLoaded", () => {
+  const music = new Audio("episode.mp3");
+  music.loop = true;
+  music.volume = 0.25;
 
-  const container = document.getElementById("questions");
-
-  questions.forEach((q, i) => {
-    const div = document.createElement("div");
-    div.classList.add("question");
-    div.innerHTML = `
-      <p>${i + 1}. ${q}</p>
-      <label><input type="radio" name="q${i}" value="1"> Nunca</label>
-      <label><input type="radio" name="q${i}" value="2"> Raramente</label>
-      <label><input type="radio" name="q${i}" value="3"> Às vezes</label>
-      <label><input type="radio" name="q${i}" value="4"> Frequentemente</label>
-      <label><input type="radio" name="q${i}" value="5"> Sempre</label>
-    `;
-    container.appendChild(div);
-  });
-
-  const form = document.getElementById("quiz-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const data = new FormData(form);
-    let total = 0;
-    for (let value of data.values()) total += Number(value);
-    const percent = (total / (questions.length * 5)) * 100;
-
-    let message = "";
-    if (percent < 35)
-      message = "Há partes de você que ainda buscam reconhecimento e acolhimento. Observe o que se repete — cada sombra é um convite à luz.";
-    else if (percent < 70)
-      message = "Você está se tornando consciente das suas feridas e padrões. Já há luz suficiente para caminhar com mais leveza.";
-    else
-      message = "O espelho te devolve presença e autenticidade. O amor que antes buscava fora, agora começa a florescer dentro.";
-
-    const result = document.getElementById("result");
-    result.classList.remove("hidden");
-    result.innerHTML = `<p>${message}</p>`;
-  });
-
-  // 🎵 Música de fundo
-  const music = document.getElementById("bg-music");
-  if (music) {
-    music.volume = 0.25;
-    const playMusic = () => {
-      music.play().catch(() => {});
-      document.removeEventListener("click", playMusic);
-    };
-    playMusic();
-    document.addEventListener("click", playMusic);
-  }
+  // Toca automaticamente após interação (regras do navegador)
+  const playMusic = () => {
+    music.play().catch(() => {});
+    document.removeEventListener("click", playMusic);
+  };
+  document.addEventListener("click", playMusic);
 });
 
+// 🌟 Estrutura das perguntas (enxugadas e equilibradas)
+const questions = [
+  // Pacificador
+  {
+    text: "Você evita conflitos mesmo quando sente que deveria se posicionar?",
+    archetype: "O Pacificador"
+  },
+  {
+    text: "Sente que é responsável por manter a harmonia emocional nas relações?",
+    archetype: "O Pacificador"
+  },
+
+  // Salvador
+  {
+    text: "Você sente que precisa consertar ou salvar os outros, mesmo às custas de si?",
+    archetype: "O Salvador"
+  },
+  {
+    text: "Tem dificuldade em aceitar ajuda, sentindo que deve ser o forte?",
+    archetype: "O Salvador"
+  },
+
+  // Autoanulação
+  {
+    text: "Frequentemente abre mão de desejos próprios para agradar os outros?",
+    archetype: "A Autoanulação"
+  },
+  {
+    text: "Sente culpa quando escolhe por si mesmo?",
+    archetype: "A Autoanulação"
+  },
+
+  // Ferida da Bruxa
+  {
+    text: "Você sente que expressar sua força ou sabedoria pode gerar rejeição?",
+    archetype: "A Ferida da Bruxa"
+  },
+  {
+    text: "Tem medo de ser mal interpretado quando expressa seu poder pessoal?",
+    archetype: "A Ferida da Bruxa"
+  },
+
+  // Dependência emocional
+  {
+    text: "Sente medo de ficar só ou de ser abandonado?",
+    archetype: "O Prisioneiro do Vínculo"
+  },
+  {
+    text: "Faz concessões dolorosas para não perder alguém?",
+    archetype: "O Prisioneiro do Vínculo"
+  },
+
+  // Amor condicional
+  {
+    text: "Acredita que precisa ser perfeito para ser amado?",
+    archetype: "O Amor Condicional"
+  },
+  {
+    text: "Sente que só é valorizado quando é útil?",
+    archetype: "O Amor Condicional"
+  },
+
+  // Vulnerabilidade negada
+  {
+    text: "Você evita demonstrar fragilidade por medo de parecer fraco?",
+    archetype: "A Vulnerabilidade Negada"
+  },
+  {
+    text: "Prefere se isolar a pedir ajuda?",
+    archetype: "A Vulnerabilidade Negada"
+  },
+
+  // Independência punida
+  {
+    text: "Tem medo de que, ao se destacar, será criticado ou rejeitado?",
+    archetype: "A Independência Punida"
+  },
+  {
+    text: "Já sentiu que ser autêntico traz punição ou afastamento?",
+    archetype: "A Independência Punida"
+  }
+];
+
+// Gera as perguntas no HTML
+const form = document.getElementById("quiz");
+
+questions.forEach((q, index) => {
+  const div = document.createElement("div");
+  div.classList.add("question");
+  div.innerHTML = `
+    <p>${index + 1}. ${q.text}</p>
+    <label><input type="radio" name="q${index}" value="1"> Discordo totalmente</label>
+    <label><input type="radio" name="q${index}" value="2"> Discordo parcialmente</label>
+    <label><input type="radio" name="q${index}" value="3"> Neutro</label>
+    <label><input type="radio" name="q${index}" value="4"> Concordo parcialmente</label>
+    <label><input type="radio" name="q${index}" value="5"> Concordo totalmente</label>
+  `;
+  form.appendChild(div);
+});
+
+// Botão de envio
+const submitBtn = document.createElement("button");
+submitBtn.textContent = "Revelar espelho";
+submitBtn.classList.add("submit-btn");
+form.appendChild(submitBtn);
+
+// Cálculo e resultado
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const scores = {};
+  questions.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected) {
+      if (!scores[q.archetype]) scores[q.archetype] = 0;
+      scores[q.archetype] += parseInt(selected.value);
+    }
+  });
+
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const top = sorted[0];
+  const archetype = top ? top[0] : "A Sombra Inconsciente";
+
+  let message = "";
+
+  switch (archetype) {
+    case "O Pacificador":
+      message = "Você busca harmonia, mas às vezes silencia sua verdade. A cura nasce quando sua voz encontra coragem.";
+      break;
+    case "O Salvador":
+      message = "Seu coração deseja aliviar o peso do outro. Mas a verdadeira compaixão começa em si mesmo.";
+      break;
+    case "A Autoanulação":
+      message = "Você se doa até se perder. O reencontro começa quando diz 'sim' à própria vontade.";
+      break;
+    case "A Ferida da Bruxa":
+      message = "Seu poder foi mal interpretado. A cura acontece quando você honra sua sabedoria sem medo.";
+      break;
+    case "O Prisioneiro do Vínculo":
+      message = "Você confunde amor com sobrevivência. Libertar-se é confiar que estar só também é estar inteiro.";
+      break;
+    case "O Amor Condicional":
+      message = "Você aprendeu que o amor precisa ser merecido. Mas o amor verdadeiro não pede prova, apenas presença.";
+      break;
+    case "A Vulnerabilidade Negada":
+      message = "Você ergueu muralhas para se proteger. Mas a alma floresce quando as lágrimas encontram o chão.";
+      break;
+    case "A Independência Punida":
+      message = "Você teme brilhar demais. Mas a sua luz não humilha — ela inspira.";
+      break;
+    default:
+      message = "O espelho se cala, aguardando que você o encare com sinceridade.";
+  }
+
+  const resultDiv = document.getElementById("result");
+  resultDiv.classList.remove("hidden");
+  resultDiv.innerHTML = `
+    <h2>${archetype}</h2>
+    <p>${message}</p>
+  `;
+
+  window.scrollTo({ top: resultDiv.offsetTop, behavior: "smooth" });
+});
