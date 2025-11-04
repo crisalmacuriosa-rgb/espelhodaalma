@@ -1,97 +1,130 @@
+/* 🌙 Espelho da Alma - Estilo Noite Espiritual */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap');
+
 body {
-  font-family: "Georgia", serif;
-  background: linear-gradient(180deg, #1b002a, #000);
-  color: #f7f7f7;
-  text-align: center;
-  padding: 2rem;
   margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(180deg, #1a001f 0%, #2b0040 60%, #000 100%);
+  color: #f4e8c1;
   min-height: 100vh;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 .container {
-  max-width: 680px;
+  max-width: 800px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.05);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 25px rgba(212,175,55,0.2);
-  backdrop-filter: blur(4px);
+  padding: 40px 20px;
+  text-align: center;
 }
 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #d4af37; /* dourado suave */
-  text-shadow: 0 0 10px rgba(212,175,55,0.3);
+header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  color: #d4af37;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
 }
 
-.intro {
-  font-style: italic;
-  margin-bottom: 2rem;
-  color: #bfae8f;
+header p {
+  color: #e0d8c3;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+form {
+  background: rgba(20, 0, 30, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
 }
 
 .question {
-  margin-bottom: 1.8rem;
-  text-align: left;
-  background: rgba(255,255,255,0.03);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  transition: background 0.3s;
-}
-
-.question:hover {
-  background: rgba(255,255,255,0.07);
-}
-
-.question p {
-  margin-bottom: 0.75rem;
-  font-weight: bold;
-  color: #fceea7;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 label {
-  margin-right: 1rem;
+  display: block;
+  margin: 6px 0;
   cursor: pointer;
-  color: #ddd;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+label:hover {
+  background: rgba(212, 175, 55, 0.2);
 }
 
 input[type="radio"] {
-  accent-color: #d4af37;
+  margin-right: 10px;
 }
 
 .submit-btn {
-  background: #d4af37;
-  color: #111;
-  border: none;
-  padding: 0.9rem 1.8rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #d4af37, #b88912);
+  color: #1a001f;
   font-weight: bold;
-  margin-top: 1.5rem;
-  transition: 0.3s;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-  background: #fff3b0;
-  box-shadow: 0 0 15px rgba(212,175,55,0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+#result {
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+  animation: fadeIn 1.5s ease forwards;
+}
+
+#result h2 {
+  color: #d4af37;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+#result p {
+  color: #f3ecd8;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .hidden {
   display: none;
 }
 
-#result {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  color: #fceea7;
-  animation: fadeIn 1.5s ease forwards;
-  line-height: 1.6;
-}
-
+/* 🌟 Pequeno toque místico */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
