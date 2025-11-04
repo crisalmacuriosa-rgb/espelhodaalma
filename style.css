@@ -1,97 +1,86 @@
 body {
   font-family: "Cormorant Garamond", serif;
-  background: linear-gradient(180deg, #1a001f, #000000);
-  color: #f8f5ff;
-  text-align: center;
+  background: linear-gradient(180deg, #1a092b 0%, #0d0318 100%);
+  color: #f5e6ff;
   margin: 0;
   padding: 0;
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
+  width: 90%;
   max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background: rgba(30, 0, 40, 0.6);
+  background: rgba(40, 15, 60, 0.85);
+  padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 20px rgba(218, 182, 255, 0.3);
+  border: 1px solid rgba(212, 180, 255, 0.2);
 }
 
 h1 {
-  font-size: 2.8em;
+  text-align: center;
+  font-size: 2.2em;
+  color: #d8b4ff;
   margin-bottom: 10px;
-  color: #f5d6ff;
-  text-shadow: 0 0 10px rgba(200, 150, 255, 0.4);
 }
 
 .intro {
-  font-size: 1.2em;
+  text-align: center;
+  font-size: 1.1em;
+  color: #e7d8ff;
   margin-bottom: 30px;
-  color: #e5d1ff;
 }
 
 .question {
   margin-bottom: 25px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: 0.3s;
-}
-
-.question:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.question p {
   font-size: 1.15em;
-  color: #f1e6ff;
-  margin-bottom: 10px;
-  font-weight: 600;
 }
 
 label {
   display: block;
-  margin: 6px 0;
-  font-size: 1em;
+  margin: 5px 0;
   cursor: pointer;
-  color: #f8f5ff;
+  transition: 0.2s;
 }
 
-button {
-  background: linear-gradient(90deg, #5e00b3, #b833ff);
+label:hover {
+  color: #ffd76b;
+}
+
+.btn {
+  background: linear-gradient(90deg, #b27fff, #7d4bcb);
   color: white;
   border: none;
-  padding: 14px 32px;
+  padding: 14px 28px;
+  border-radius: 8px;
   font-size: 1.1em;
-  border-radius: 30px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px;
+  display: block;
+  margin: 30px auto 0;
+  transition: background 0.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(183, 51, 255, 0.6);
+.btn:hover {
+  background: linear-gradient(90deg, #d8b4ff, #a77bff);
 }
 
 #result {
-  margin-top: 30px;
+  margin-top: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
   padding: 25px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffe8ff;
-  font-size: 1.3em;
-  line-height: 1.6em;
-  animation: fadeIn 2s ease-in-out;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 180, 255, 0.3);
+}
+
+#result h2 {
+  color: #ffd76b;
+  font-size: 1.6em;
 }
 
 .hidden {
   display: none;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
 }
