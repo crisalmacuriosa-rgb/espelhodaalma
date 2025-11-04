@@ -1,130 +1,98 @@
-/* 🌙 Espelho da Alma - Estilo Noite Espiritual */
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap');
-
 body {
+  font-family: 'Georgia', serif;
+  background: radial-gradient(circle at top, #2e004f, #000);
+  color: #f8e8c3;
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
-  background: linear-gradient(180deg, #1a001f 0%, #2b0040 60%, #000 100%);
-  color: #f4e8c1;
   min-height: 100vh;
-  background-attachment: fixed;
-  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  width: 90%;
+  max-width: 700px;
+  background: rgba(30, 0, 50, 0.8);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(255, 215, 128, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 2.8rem;
-  color: #d4af37;
-  margin-bottom: 10px;
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+  color: #f3d98b;
+  text-shadow: 0 0 10px #7a4fc7;
+  margin-bottom: 0.5rem;
 }
 
 header p {
-  color: #e0d8c3;
-  font-size: 1.1rem;
-  margin-bottom: 40px;
-}
-
-form {
-  background: rgba(20, 0, 30, 0.6);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.1);
-  backdrop-filter: blur(6px);
-  transition: 0.3s ease;
-}
-
-form:hover {
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  font-style: italic;
+  color: #d1bff0;
 }
 
 .question {
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-  line-height: 1.5;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(243, 217, 139, 0.3);
+}
+
+.question p {
+  font-size: 1.2rem;
+  color: #f9eac4;
+  margin-bottom: 1rem;
 }
 
 label {
   display: block;
-  margin: 6px 0;
+  margin: 0.4rem 0;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 10px;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-}
-
-label:hover {
-  background: rgba(212, 175, 55, 0.2);
+  color: #d9c8ff;
 }
 
 input[type="radio"] {
-  margin-right: 10px;
+  accent-color: #f3d98b;
+  margin-right: 8px;
 }
 
 .submit-btn {
-  margin-top: 20px;
-  background: linear-gradient(90deg, #d4af37, #b88912);
-  color: #1a001f;
+  display: block;
+  background: linear-gradient(90deg, #b594f2, #f3d98b);
+  color: #2e004f;
   font-weight: bold;
-  padding: 12px 28px;
   border: none;
-  border-radius: 30px;
-  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin: 1rem auto;
+  font-size: 1rem;
+  transition: 0.3s;
 }
 
 .submit-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  opacity: 0.85;
 }
 
 #result {
-  margin-top: 40px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
   border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-  animation: fadeIn 1.5s ease forwards;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(180, 150, 255, 0.2);
 }
 
 #result h2 {
-  color: #d4af37;
-  font-family: 'Cinzel', serif;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-}
-
-#result p {
-  color: #f3ecd8;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  color: #f3d98b;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #7a4fc7;
 }
 
 .hidden {
   display: none;
-}
-
-/* 🌟 Pequeno toque místico */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
