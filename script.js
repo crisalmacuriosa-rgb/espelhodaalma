@@ -1,34 +1,66 @@
-// --- CONFIGURAÇÃO DAS PERGUNTAS ---
-const questions = [
-  "Sinto que preciso ajudar os outros, mesmo quando estou esgotado(a).",
-  "Evito conflitos para manter a harmonia, mesmo que isso me machuque.",
-  "Tenho medo de decepcionar as pessoas, então me esforço demais.",
-  "Sinto que preciso estar no controle para tudo dar certo.",
-  "Tenho dificuldade em pedir ajuda, mesmo quando preciso.",
-  "Busco ser reconhecido(a) para me sentir com valor.",
-  "Sinto que, se relaxar, algo ruim pode acontecer.",
-  "Temo mostrar minha vulnerabilidade.",
-  "Acredito que, para ser amado(a), preciso ser útil.",
-  "Sinto que carrego a responsabilidade pelos outros.",
-  "Tenho medo de errar e ser julgado(a).",
-  "Sinto que minha paz depende do bem-estar alheio.",
-  "É difícil me permitir descansar sem culpa.",
-  "Quando algo dá errado, sinto que a culpa é minha.",
-  "Tenho dificuldade em dizer não.",
-  "Sinto que preciso estar sempre forte.",
-  "Evito demonstrar fragilidade.",
-  "Sinto que, se eu não estiver bem, todos desmoronam.",
-  "Preciso sentir que sou importante para alguém.",
-  "Tenho medo de ser deixado(a) de lado."
-];
+// --- PERGUNTAS POR ARQUÉTIPO ---
+const archetypes = {
+  salvador: {
+    nome: "💫 O Salvador",
+    perguntas: [
+      "Sinto que preciso ajudar os outros, mesmo quando estou esgotado(a).",
+      "Acredito que, para ser amado(a), preciso ser útil.",
+      "Tenho medo de decepcionar as pessoas, então me esforço demais.",
+      "Sinto que carrego a responsabilidade pelos outros."
+    ]
+  },
+  pacificador: {
+    nome: "🌿 O Pacificador",
+    perguntas: [
+      "Evito conflitos para manter a harmonia, mesmo que isso me machuque.",
+      "Sinto que minha paz depende do bem-estar alheio.",
+      "Tenho dificuldade em dizer não.",
+      "Prefiro ceder do que lidar com tensão ou desagrado."
+    ]
+  },
+  controlador: {
+    nome: "🔥 O Guardião do Controle",
+    perguntas: [
+      "Sinto que preciso estar no controle para tudo dar certo.",
+      "Tenho medo de errar e ser julgado(a).",
+      "Sinto que, se eu não estiver bem, todos desmoronam.",
+      "É difícil relaxar e confiar que as coisas darão certo."
+    ]
+  },
+  dependente: {
+    nome: "💔 O Prisioneiro do Vínculo",
+    perguntas: [
+      "Preciso sentir que sou importante para alguém.",
+      "Tenho medo de ser deixado(a) de lado.",
+      "Sinto ansiedade quando alguém se afasta de mim.",
+      "Tenho dificuldade em ficar só comigo mesmo(a)."
+    ]
+  },
+  forte: {
+    nome: "🜂 O Forte Inquebrável",
+    perguntas: [
+      "Sinto que preciso estar sempre forte.",
+      "Evito demonstrar fragilidade.",
+      "Tenho dificuldade em pedir ajuda, mesmo quando preciso.",
+      "Ser vulnerável me causa desconforto."
+    ]
+  }
+};
 
-// --- EXIBIR PERGUNTAS NA TELA ---
+// --- MONTA O QUESTIONÁRIO ---
 const container = document.getElementById("quiz");
-questions.forEach((q, i) => {
+let allQuestions = [];
+for (const key in archetypes) {
+  archetypes[key].perguntas.forEach((p) => {
+    allQuestions.push({ arquetipo: key, texto: p });
+  });
+}
+
+allQuestions.forEach((q, i) => {
   const div = document.createElement("div");
   div.classList.add("question");
   div.innerHTML = `
-    <p>${i + 1}. ${q}</p>
+    <p>${i + 1}. ${q.texto}</p>
     <label><input type="radio" name="q${i}" value="1"> Discordo totalmente</label>
     <label><input type="radio" name="q${i}" value="2"> Discordo</label>
     <label><input type="radio" name="q${i}" value="3"> Neutro</label>
@@ -38,40 +70,45 @@ questions.forEach((q, i) => {
   container.appendChild(div);
 });
 
-// --- FUNÇÃO DE RESULTADO ---
+// --- AVALIA RESULTADO ---
 document.getElementById("submit").addEventListener("click", () => {
-  let score = 0;
-  const total = questions.length;
+  const scores = {};
+  for (const key in archetypes) scores[key] = 0;
 
-  for (let i = 0; i < total; i++) {
+  allQuestions.forEach((q, i) => {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    if (selected) {
-      score += parseInt(selected.value);
-    }
-  }
+    if (selected) scores[q.arquetipo] += parseInt(selected.value);
+  });
 
-  const percent = (score / (total * 5)) * 100;
-  let message = "";
+  // Identifica o arquétipo mais alto
+  let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
-  if (percent < 35)
-    message = "🕯️ Você carrega marcas antigas, crenças moldadas pela necessidade de sobrevivência. Observe os padrões que se repetem: neles está o chamado para a cura.";
-  else if (percent < 70)
-    message = "🌗 Você está em processo de cura. Já reconhece suas sombras e está aprendendo a caminhar com elas, transformando-as em sabedoria.";
-  else
-    message = "🌞 Você vibra autenticidade e presença. O espelho da alma reflete tua essência liberta — és o centro sereno entre o sentir e o agir.";
+  const arq = archetypes[winner];
+  const mensagens = {
+    salvador:
+      "O Salvador busca redenção ajudando o outro — mas a alma pede que ele se salve também. A cura nasce quando o amor se oferece sem peso.",
+    pacificador:
+      "O Pacificador teme o caos, mas o verdadeiro equilíbrio vem do encontro entre opostos. A tua voz é também um instrumento de paz.",
+    controlador:
+      "O Guardião do Controle acredita proteger, mas aprisiona o fluxo da vida. Quando o controle se rende à confiança, nasce o poder autêntico.",
+    dependente:
+      "O Prisioneiro do Vínculo busca amor como oxigênio. Mas o amor verdadeiro floresce quando há espaço para respirar.",
+    forte:
+      "O Forte Inquebrável ergue muralhas para sobreviver. No entanto, a força mais bela é a que se permite sentir."
+  };
 
   const resultDiv = document.getElementById("result");
   resultDiv.classList.remove("hidden");
-  resultDiv.innerHTML = `<p>${message}</p>`;
+  resultDiv.innerHTML = `
+    <h2>${arq.nome}</h2>
+    <p>${mensagens[winner]}</p>
+  `;
 });
 
 // --- MÚSICA DE FUNDO ---
 const music = new Audio("episode.mp3");
-music.volume = 0.25;
+music.volume = 0.3;
 music.loop = true;
-
 document.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-  }
+  if (music.paused) music.play();
 });
