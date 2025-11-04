@@ -5,15 +5,13 @@ const archetypes = {
     perguntas: [
       "Sinto que preciso ajudar os outros, mesmo quando estou esgotado(a).",
       "Acredito que, para ser amado(a), preciso ser útil.",
-      "Tenho medo de decepcionar as pessoas, então me esforço demais.",
-      "Sinto que carrego a responsabilidade pelos outros."
+      "Tenho medo de decepcionar as pessoas, então me esforço demais."
     ]
   },
   pacificador: {
     nome: "🌿 O Pacificador",
     perguntas: [
       "Evito conflitos para manter a harmonia, mesmo que isso me machuque.",
-      "Sinto que minha paz depende do bem-estar alheio.",
       "Tenho dificuldade em dizer não.",
       "Prefiro ceder do que lidar com tensão ou desagrado."
     ]
@@ -23,8 +21,7 @@ const archetypes = {
     perguntas: [
       "Sinto que preciso estar no controle para tudo dar certo.",
       "Tenho medo de errar e ser julgado(a).",
-      "Sinto que, se eu não estiver bem, todos desmoronam.",
-      "É difícil relaxar e confiar que as coisas darão certo."
+      "Sinto que, se eu não estiver bem, todos desmoronam."
     ]
   },
   dependente: {
@@ -32,8 +29,7 @@ const archetypes = {
     perguntas: [
       "Preciso sentir que sou importante para alguém.",
       "Tenho medo de ser deixado(a) de lado.",
-      "Sinto ansiedade quando alguém se afasta de mim.",
-      "Tenho dificuldade em ficar só comigo mesmo(a)."
+      "Sinto ansiedade quando alguém se afasta de mim."
     ]
   },
   forte: {
@@ -41,8 +37,7 @@ const archetypes = {
     perguntas: [
       "Sinto que preciso estar sempre forte.",
       "Evito demonstrar fragilidade.",
-      "Tenho dificuldade em pedir ajuda, mesmo quando preciso.",
-      "Ser vulnerável me causa desconforto."
+      "Tenho dificuldade em pedir ajuda, mesmo quando preciso."
     ]
   }
 };
@@ -79,6 +74,13 @@ document.getElementById("submit").addEventListener("click", () => {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
     if (selected) scores[q.arquetipo] += parseInt(selected.value);
   });
+
+  // Se nenhuma resposta for dada
+  const answered = Object.values(scores).reduce((a, b) => a + b, 0);
+  if (answered === 0) {
+    alert("Por favor, responda todas as perguntas antes de revelar o arquétipo.");
+    return;
+  }
 
   // Identifica o arquétipo mais alto
   let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
